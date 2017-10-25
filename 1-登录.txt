@@ -1,0 +1,5 @@
+涉及的功能：
+1、使用表单  http://www.yiichina.com/doc/guide/2.0/start-forms
+2、设置在同一命名空间下的类，可以直接使用
+3、登录的WEB application
+4、视图
