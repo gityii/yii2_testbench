@@ -39,16 +39,22 @@ $config = [
             ],
         ],
         'db' => $db,
-/*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-*/
+
     ],
     'params' => $params,
+    // 模块配置
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
