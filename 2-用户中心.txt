@@ -1,6 +1,22 @@
 1、权限管理
 2、用户/管理员
 3、数据库
-4、视图
+4、视图 布局  
 5、ActiveRecord 类
 6、注册
+
+
+id(primarykey,auto_increment),username(varchar),password(varchar(32)),auth_key(varchar(32)),accessToken(varchar(32))
+
+yiidata
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(72) collate utf8_unicode_ci NOT NULL,
+  `password` varchar(32) NOT NULL ,
+  `auth_key` varchar(72) NOT NULL ,
+  `accessToken` varchar(72) NOT NULL ,
+   PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
