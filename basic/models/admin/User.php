@@ -1,8 +1,9 @@
 <?php
 
 namespace app\models\admin;
+use yii\db\ActiveRecord;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends ActiveRecord  implements \yii\web\IdentityInterface
 {
     public $id;
     public $username;
@@ -27,13 +28,17 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         ],
     ];
 
+    public static function tableName(){
+        return 'user';
+    }
 
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne($id);
     }
 
     /**
@@ -41,6 +46,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
+        /*
         foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
                 return new static($user);
@@ -48,6 +54,8 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         }
 
         return null;
+        */
+        return static::findOne(['accessToken'=>$token]);
     }
 
     /**
@@ -58,6 +66,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
+        /*
         foreach (self::$users as $user) {
             if (strcasecmp($user['username'], $username) === 0) {
                 return new static($user);
@@ -65,9 +74,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         }
 
         return null;
+
+        */
+        return static::findOne(['username'=>$username]);
     }
 
-    /**
+
+        /**
      * @inheritdoc
      */
     public function getId()
@@ -101,4 +114,11 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = \Yii::$app->security->generateRandomString();
+        $this->save();
+     }
 }

@@ -4,7 +4,8 @@
 4、视图 布局  
 5、ActiveRecord 类
 6、注册
-
+7、函数的调用
+8、this的使用
 
 id(primarykey,auto_increment),username(varchar),password(varchar(32)),auth_key(varchar(32)),accessToken(varchar(32))
 
